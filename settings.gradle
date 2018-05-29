@@ -1,0 +1,1 @@
+include ':app', ':homemodule', ':basemodule', ':basemodule', ':minemodule', ':goodsmodule', ':cartmodule'
