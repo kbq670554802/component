@@ -1,11 +1,36 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
+        <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+        <!--<item name="colorAccent">@color/colorAccent</item>-->
+        <!--状态栏颜色，应用的主要暗色调，statusBarColor默认使用该颜色-->
+        <item name="colorPrimaryDark">@color/tool_bar_bg</item>
+        <!--Appbar背景色，应用的主要色调，actionBar默认使用该颜色-->
+        <item name="colorPrimary">@color/tool_bar_bg</item>
+        <!--页面背景色-->
+        <item name="android:windowBackground">@color/gray_cc</item>
+        <!--应用的主要文字颜色，actionBar的标题文字默认使用该颜色-->
+        <item name="android:textColorPrimary">@android:color/black</item>
+        <!--ToolBar上的Title颜色-->
+        <item name="android:textColorPrimaryInverse">@color/white</item>
+        <!--应用的前景色，ListView的分割线，switch滑动区默认使用该颜色-->
+        <item name="android:colorForeground">@color/gray_8f</item>
+        <!--应用的背景色，popMenu的背景默认使用该颜色-->
+        <item name="android:colorBackground">@color/gray_8f</item>
+        <!--一般控件的选种效果默认采用该颜色-->
+        <item name="colorAccent">@color/lightslategray</item>
+        <!--控件选中时的颜色，默认使用colorAccent-->
+        <!--Button，textView的文字颜色-->
+        <item name="android:textColor">@color/white</item>
+        <!--RadioButton checkbox等控件的文字-->
+        <item name="android:textColorPrimaryDisableOnly">@color/white</item>
+        <!--对话框的背景是否变暗-->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!--Activity 的切换动画。其引用的 activityAnim 也是 style ，需要继承 parent="@android:style/Animation.Translucent"-->
+        <!--<item name="android:windowAnimationStyle">@style/activityAnim</item>-->
     </style>
 
 </resources>
