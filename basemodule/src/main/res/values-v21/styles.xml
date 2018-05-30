@@ -3,11 +3,11 @@
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!--状态栏颜色，应用的主要暗色调，statusBarColor默认使用该颜色-->
-        <item name="android:colorPrimaryDark">@color/tool_bar_bg</item>
+        <item name="android:colorPrimaryDark">@color/c0</item>
         <!--状态栏颜色，默认使用colorPrimaryDark-->
-        <item name="android:statusBarColor">@color/tool_bar_bg</item>
+        <item name="android:statusBarColor">@color/c0</item>
         <!--Appbar背景色，应用的主要色调，actionBar默认使用该颜色-->
-        <item name="android:colorPrimary">@color/tool_bar_bg</item>
+        <item name="android:colorPrimary">@color/c0</item>
         <!--页面背景色-->
         <item name="android:windowBackground">@color/gray_8f</item>
         <!--底部导航栏颜色-->

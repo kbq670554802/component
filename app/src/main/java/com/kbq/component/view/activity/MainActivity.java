@@ -9,6 +9,7 @@ import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.kbq.component.R;
 import com.kbq.component.base.view.activity.BaseActivity;
+import com.kbq.component.goods.RouterConfig;
 import com.kbq.component.model.bean.TabBean;
 import com.kbq.component.view.adapter.ViewPagerAdapter;
 
@@ -46,13 +47,13 @@ public class MainActivity extends BaseActivity {
         mTabBeanList.add(new TabBean(titleList[3], R.drawable.tab_more_select, R.drawable.tab_more_unselect));
 
         mFragmentList.add((Fragment) ARouter.getInstance().build("/home/homefragment").navigation());
-        mFragmentList.add((Fragment) ARouter.getInstance().build("/goods/goodsfragment").navigation());
+        mFragmentList.add((Fragment) ARouter.getInstance().build(RouterConfig.GOODS_GOODS_FRAGMENT).navigation());
         mFragmentList.add((Fragment) ARouter.getInstance().build("/cart/cartfragment").navigation());
         mFragmentList.add((Fragment) ARouter.getInstance().build("/mine/minefragment").navigation());
 
 
         mTabLayout.setTabData(mTabBeanList);
-        mViewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(),mFragmentList,titleList));
+        mViewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(), mFragmentList, titleList));
         mTabLayout.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {
