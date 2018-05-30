@@ -1,12 +1,11 @@
 //apply plugin: 'com.android.application'
 apply plugin: 'com.android.library'
 
-
 def cfg = rootProject.ext.configuration
+def libs = rootProject.ext.libraries
 
 android {
     compileSdkVersion cfg.compileVersion
-//    buildToolsVersion cfg.buildToolsVersion
 
     defaultConfig {
 //        applicationId "com.kbq.component.home"
@@ -39,5 +38,6 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     implementation project(':basemodule')
-    annotationProcessor 'com.alibaba:arouter-compiler:1.1.4'
+    annotationProcessor "com.alibaba:arouter-compiler:${libs.arouter_compiler}"
+
 }

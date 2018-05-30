@@ -2,7 +2,6 @@ package com.kbq.component.view.activity;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.flyco.tablayout.CommonTabLayout;
@@ -10,7 +9,6 @@ import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.kbq.component.R;
 import com.kbq.component.base.view.activity.BaseActivity;
-import com.kbq.component.home.view.fragment.HomeFragment;
 import com.kbq.component.model.bean.TabBean;
 import com.kbq.component.view.adapter.ViewPagerAdapter;
 
@@ -48,14 +46,10 @@ public class MainActivity extends BaseActivity {
         mTabBeanList.add(new TabBean(titleList[3], R.drawable.tab_more_select, R.drawable.tab_more_unselect));
 
         mFragmentList.add((Fragment) ARouter.getInstance().build("/home/homefragment").navigation());
-        mFragmentList.add((Fragment) ARouter.getInstance().build("/home/homefragment").navigation());
-        mFragmentList.add((Fragment) ARouter.getInstance().build("/home/homefragment").navigation());
-        mFragmentList.add((Fragment) ARouter.getInstance().build("/home/homefragment").navigation());
+        mFragmentList.add((Fragment) ARouter.getInstance().build("/goods/goodsfragment").navigation());
+        mFragmentList.add((Fragment) ARouter.getInstance().build("/cart/cartfragment").navigation());
+        mFragmentList.add((Fragment) ARouter.getInstance().build("/mine/minefragment").navigation());
 
-//        mFragmentList.add(new HomeFragment());
-//        mFragmentList.add(new HomeFragment());
-//        mFragmentList.add(new HomeFragment());
-//        mFragmentList.add(new HomeFragment());
 
         mTabLayout.setTabData(mTabBeanList);
         mViewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(),mFragmentList,titleList));
