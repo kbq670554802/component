@@ -1,17 +1,16 @@
 package com.kbq.component.base.view.activity;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.annotation.Nullable;
+import android.support.annotation.DrawableRes;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.blankj.utilcode.util.ActivityUtils;
 import com.kbq.component.base.R;
-import com.kbq.component.base.view.widget.TitleBar;
 
 /**
  * Author: 柯葆青
@@ -19,13 +18,16 @@ import com.kbq.component.base.view.widget.TitleBar;
  * Description: BaseActivity
  */
 public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
-    public TitleBar mTitleBar;
+    private Toolbar mToolBar;
+    private TextView mTbTitle;
+    private TextView mTbRightText;
+    private ImageView mTbRightImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(attachLayoutRes());
-        mTitleBar = findViewById(R.id.title_bar);
+        setToolBar();
         initUI();
         initData();
     }
@@ -49,40 +51,41 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     public void onClick(View v) {
     }
 
-
-    public void initTooleBar(boolean showBack, String title) {
-        if (mTitleBar == null) {
-            return;
-        }
-        if (showBack) {
-            mTitleBar.setNavigationIcon(R.drawable.nav_back);
-            mTitleBar.setNavigationOnClickListener(new View.OnClickListener() {
+    private void setToolBar() {
+        mToolBar = findViewById(R.id.toolbar);
+        mTbTitle = findViewById(R.id.tb_title);
+        mTbRightText = findViewById(R.id.tb_right_text);
+        mTbRightImage = findViewById(R.id.tb_right_image);
+        if(mToolBar!=null) {
+            mToolBar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
+                public void onClick(View v) {
                     ActivityUtils.finishActivity(BaseActivity.this);
                 }
             });
-        } else {
-            mTitleBar.setVisibility(View.GONE);
-        }
-        if (TextUtils.isEmpty(title)) {
-            mTitleBar.setVisibility(View.GONE);
-        } else {
-            mTitleBar.setVisibility(View.VISIBLE);
-            mTitleBar.setMyCenterTitle(title);
         }
     }
 
-    public void initTooleBar(boolean showBack, int titleRes) {
-        String title = getResources().getString(titleRes);
-        initTooleBar(showBack, title);
+    public void setTbTitle(String text) {
+        if (mTbTitle != null) {
+            mTbTitle.setVisibility(View.VISIBLE);
+            mTbTitle.setText(text);
+        }
     }
 
-    public void initTooleBar(String title) {
-        initTooleBar(true, title);
+    public void setTbRightText(String text, View.OnClickListener listener) {
+        if (mTbRightText != null) {
+            mTbRightText.setVisibility(View.VISIBLE);
+            mTbRightText.setText(text);
+            mTbRightText.setOnClickListener(listener);
+        }
     }
 
-    public Drawable getDrawable_(int resId) {
-        return ContextCompat.getDrawable(this, resId);
+    public void setTbRightImage(@DrawableRes int resId, View.OnClickListener listener) {
+        if (mTbRightImage != null) {
+            mTbRightImage.setVisibility(View.VISIBLE);
+            mTbRightImage.setImageDrawable(ContextCompat.getDrawable(this, resId));
+            mTbRightImage.setOnClickListener(listener);
+        }
     }
 }

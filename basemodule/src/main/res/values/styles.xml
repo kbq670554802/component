@@ -16,6 +16,7 @@
         <item name="android:textColorPrimary">@android:color/black</item>
         <!--ToolBar上的Title颜色-->
         <item name="android:textColorPrimaryInverse">@color/white</item>
+        <item name="toolbarStyle">@style/ToolbarTheme</item>
         <!--应用的前景色，ListView的分割线，switch滑动区默认使用该颜色-->
         <item name="android:colorForeground">@color/gray_8f</item>
         <!--应用的背景色，popMenu的背景默认使用该颜色-->
@@ -33,14 +34,55 @@
         <!--<item name="android:windowAnimationStyle">@style/activityAnim</item>-->
     </style>
 
-
-    <style name="TextAppearance_TitleBar_Title" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <!-- title文字样式（和toolbar自带样式一样，可自行修改） -->
-        <item name="android:textSize">17sp</item>
-        <!--toolbar标题文字颜色-->
-        <item name="android:textColor">@color/white</item>
-        <item name="actionMenuTextColor">@android:color/white</item>
+    <!-- ToolBar菜单样式 -->
+    <style name="ToolbarStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">44dp</item>
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:background">@color/c0</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="navigationIcon">@drawable/nav_back</item>
+        <item name="theme">@style/ToolbarTheme</item>
     </style>
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <!-- ToolBar菜单主题 -->
+    <style name="ToolbarTheme" parent="Widget.AppCompat.Toolbar">
+        <item name="actionBarSize">44dp</item>
+        <item name="actionMenuTextColor">@android:color/white</item> <!--  右边菜单字颜色-->
+        <item name="android:textSize">14sp</item> <!--  右边菜单字体大小-->
+        <item name="android:layout_gravity">center</item>
+        <item name="toolbarStyle">@style/myToolbarStyle</item>
+        <item name="toolbarNavigationButtonStyle">@style/myToolbarNavigationButtonStyle</item>
+        <item name="android:actionOverflowButtonStyle">@style/OverflowButtonStyle</item>
+        <item name="contentInsetStart">0dp</item><!-- 设置该属性解决空白部分-->
+    </style>
 
+    <style name="myToolbarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="android:paddingRight">10dp</item><!-- toolBar右边内间距 -->
+        <item name="android:paddingLeft">0dp</item>
+    </style>
+
+    <!-- 右边菜单栏隐藏项图标 -->
+    <style name="OverflowButtonStyle" parent="android:Widget.ActionButton.Overflow">
+        <item name="android:src">@drawable/nav_back</item>
+        <item name="android:minHeight">20dp</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="myToolbarNavigationButtonStyle" parent="Widget.AppCompat.Toolbar.Button.Navigation">
+        <item name="android:paddingLeft">0px</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:gravity">left</item>
+        <item name="android:minWidth">10dp</item>
+        <item name="android:scaleType">centerInside</item>
+    </style>
+
+
+    <!--<style name="TextAppearance_TitleBar_Title" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">-->
+        <!--&lt;!&ndash; title文字样式（和toolbar自带样式一样，可自行修改） &ndash;&gt;-->
+        <!--<item name="android:textSize">17sp</item>-->
+        <!--&lt;!&ndash;toolbar标题文字颜色&ndash;&gt;-->
+        <!--<item name="android:textColor">@color/white</item>-->
+        <!--<item name="actionMenuTextColor">@android:color/white</item>-->
+    <!--</style>-->
 </resources>

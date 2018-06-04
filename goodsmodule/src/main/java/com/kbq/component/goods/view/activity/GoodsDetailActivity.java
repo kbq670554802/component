@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -12,6 +13,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.kbq.component.base.view.activity.BaseActivity;
+import com.kbq.component.base.view.widget.TitleBar;
 import com.kbq.component.goods.R;
 import com.kbq.component.goods.RouterConfig;
 
@@ -24,6 +26,7 @@ import java.util.List;
  */
 @Route(path = RouterConfig.GOODS_GOODS_DETAIL_ACTIVITY)
 public class GoodsDetailActivity extends BaseActivity {
+    private static final String TAG = "GoodsDetailActivity";
 
     private TextView tv_activitys;
 
@@ -35,26 +38,45 @@ public class GoodsDetailActivity extends BaseActivity {
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void initUI() {
-//        initTooleBar("商品详情");
-        mTitleBar.setMyCenterTitle("商品详情")
-//                .setMySettingText("搜索")
-                .setMySettingIcon(R.drawable.setting)
-                .setSettingTextOnClickListener(new View.OnClickListener() {
+        TitleBar titleBar = findViewById(R.id.title_bar);
+        titleBar.setCenterText("发布采购")
+
+                .setLeftIcon(R.drawable.nav_back)
+                .setLeftIconOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        ToastUtils.showShort("搜索");
+                        Log.i(TAG, "onClick: 左边图标");
                     }
-                }).setMyNavigationText("取消")
-                .setNavigationTextOnClickListener(new View.OnClickListener() {
+                })
+                .setLeftText("取消")
+                .setLeftTextPaddingLeft(4)
+                .setLeftTextOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        GoodsDetailActivity.this.finish();
+                        Log.i(TAG, "onClick: 左边文字");
                     }
-                });
-
+                })
+                .setRightIcon(R.drawable.nav_back)
+                .setRightIconOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.i(TAG, "onClick: 右侧图标");
+                    }
+                })
+                .setRightText("保存")
+                .setRightTextPaddingRight(4)
+                .setRightTextOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.i(TAG, "onClick: 右边文字");
+                    }
+                })
+        ;
 
         tv_activitys = getView(R.id.tv_activitys);
         tv_activitys.setOnClickListener(this);
+
+
     }
 
     @Override

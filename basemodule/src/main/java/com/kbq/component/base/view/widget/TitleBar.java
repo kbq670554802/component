@@ -24,26 +24,20 @@ import android.widget.TextView;
 import com.blankj.utilcode.util.SizeUtils;
 import com.kbq.component.base.R;
 
-
-/**
- * Author: 柯葆青
- * Date: 2018/05/30
- * Description: 自定义toolbar
- */
 public class TitleBar extends Toolbar {
     //中心标题
-    private TextView mCenterTitle;
-    //中心icon
-    private ImageView mCenterIcon;
+    private TextView mCenterText;
+//    //中心icon
+//    private ImageView mCenterIcon;
 
-    //左侧按钮
-    private ImageButton mNavigationIcon;
     //左侧文字
-    private TextView mNavigationText;
+    private TextView mLeftText;
+    //左侧按钮
+    private ImageButton mLeftIcon;
     //右侧文字
-    private TextView mSettingText;
+    private TextView mRightText;
     //右侧按钮
-    private ImageButton mSettingIcon;
+    private ImageButton mRightIcon;
 
     public TitleBar(Context context) {
         super(context);
@@ -59,24 +53,24 @@ public class TitleBar extends Toolbar {
 
 
     public ImageButton getRightBtn() {
-        return mSettingIcon;
+        return mRightIcon;
     }
 
-    public TextView getRightText() {
-        return mSettingText;
+    public TextView getRightTextView() {
+        return mRightText;
     }
 
     public TextView getCenterTextView() {
-        return mCenterTitle;
+        return mCenterText;
     }
 
     /**
      * 左侧文字
      *
-     * @param Rid
+     * @param resId
      */
-    public TitleBar setMyNavigationText(@StringRes int Rid) {
-        setMyNavigationText(this.getContext().getText(Rid));
+    public TitleBar setLeftText(@StringRes int resId) {
+        setLeftText(this.getContext().getText(resId));
         return this;
     }
 
@@ -86,208 +80,60 @@ public class TitleBar extends Toolbar {
      *
      * @param text
      */
-    public TitleBar setMyNavigationText(CharSequence text) {
+    public TitleBar setLeftText(CharSequence text) {
         Context context = this.getContext();
-        if (this.mNavigationText == null) {
-            this.mNavigationText = new TextView(context);
-
-            mNavigationText.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
-
-            this.mNavigationText.setGravity(Gravity.CENTER_VERTICAL);
-            this.mNavigationText.setSingleLine();
-            this.mNavigationText.setEllipsize(TextUtils.TruncateAt.END);
-            this.mNavigationText.setTextColor(getResources().getColor(R.color.white));
-//            setMyNavigationTextAppearance(getContext(), R.style.TextAppearance_TitleBar_subTitle);
-            //textView in left
-            this.addMyView(this.mNavigationText, Gravity.START, SizeUtils.dp2px(15), 0, 0, 0);
-        }
-        mNavigationText.setText(text);
-        return this;
-    }
-
-    public TitleBar setMyNavigationText(CharSequence text, int paddingleft) {
-        Context context = this.getContext();
-        if (this.mNavigationText == null) {
-            this.mNavigationText = new TextView(context);
-
-            mNavigationText.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
-
-            this.mNavigationText.setGravity(Gravity.CENTER_VERTICAL);
-            this.mNavigationText.setSingleLine();
-            this.mNavigationText.setEllipsize(TextUtils.TruncateAt.END);
-//            setMyNavigationTextAppearance(getContext(), R.style.TextAppearance_TitleBar_subTitle);
-            //textView in left
-            this.addMyView(this.mNavigationText, Gravity.START, SizeUtils.dp2px(paddingleft), 0, 0, 0);
-        }
-        mNavigationText.setText(text);
-        return this;
-    }
-
-
-    public TitleBar setMyNavigationTextColor(@ColorInt int color) {
-        if (this.mNavigationText != null) {
-            this.mNavigationText.setTextColor(color);
-        }
-        return this;
-    }
-
-    public TitleBar setNavigationTextOnClickListener(View.OnClickListener listener) {
-        if (mNavigationText != null) {
-            mNavigationText.setOnClickListener(listener);
-        }
-        return this;
-    }
-
-    public TitleBar setNavigationIconOnClickListener(View.OnClickListener listener) {
-        if (mNavigationIcon != null) {
-            mNavigationIcon.setOnClickListener(listener);
-        }
-        return this;
-    }
-
-    /**
-     * 居中标题
-     *
-     * @param Rid
-     */
-    public TitleBar setMyCenterTitle(@StringRes int Rid) {
-        setMyCenterTitle(this.getContext().getText(Rid));
-        return this;
-    }
-
-    public TitleBar setMyCenterTitle(CharSequence text) {
-        Context context = this.getContext();
-        if (this.mCenterTitle == null) {
-            this.mCenterTitle = new TextView(context);
-            this.mCenterTitle.setGravity(Gravity.CENTER);
-            this.mCenterTitle.setSingleLine();
-            this.mCenterTitle.setEllipsize(TextUtils.TruncateAt.END);
-            setMyCenterTextAppearance(getContext(), R.style.TextAppearance_TitleBar_Title);
-            //textView in center
-            this.addMyView(this.mCenterTitle, Gravity.CENTER);
-        } else {
-            if (this.mCenterTitle.getVisibility() != VISIBLE) {
-                mCenterTitle.setVisibility(VISIBLE);
+        if (this.mLeftText == null) {
+            this.mLeftText = new TextView(context);
+            mLeftText.setTextSize(16);
+            this.mLeftText.setGravity(Gravity.CENTER);
+            this.mLeftText.setSingleLine();
+            this.mLeftText.setEllipsize(TextUtils.TruncateAt.END);
+            this.mLeftText.setTextColor(getResources().getColor(R.color.white));
+            //左侧图标和左侧文字同时存在时,左侧图标的paddingRight为0
+            if (mLeftIcon != null && mLeftIcon.getVisibility() != View.GONE) {
+                this.mLeftText.setPadding(0, 0, SizeUtils.dp2px(15), 0);
+            } else {
+                this.mLeftText.setPadding(SizeUtils.dp2px(15), 0, SizeUtils.dp2px(15), 0);
             }
+            LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
+            params.gravity = Gravity.START;
+            this.addView(this.mLeftText, params);
         }
-        if (mCenterIcon != null && mCenterIcon.getVisibility() != GONE) {
-            mCenterIcon.setVisibility(GONE);
-        }
-        //隐藏toolbar自带的标题
-        setTitle("");
-        mCenterTitle.setText(text);
+        mLeftText.setText(text);
         return this;
     }
 
-    public TitleBar setMyCenterTextAppearance(Context context, @StyleRes int resId) {
-        if (this.mCenterTitle != null) {
-            this.mCenterTitle.setTextAppearance(context, resId);
-        }
-        return this;
-    }
-
-    public TitleBar setMyCenterTextColor(@ColorInt int color) {
-        if (this.mCenterTitle != null) {
-            this.mCenterTitle.setTextColor(color);
+    public TitleBar setLeftTextPaddingLeft(int paddingLeft) {
+        if (this.mLeftText != null) {
+            this.mLeftText.setPadding(SizeUtils.dp2px(paddingLeft), 0, SizeUtils.dp2px(15), 0);
         }
         return this;
     }
 
-    /**
-     * 居中图标
-     *
-     * @param resId
-     */
-    public TitleBar setMyCenterIcon(@DrawableRes int resId) {
-        setMyCenterIcon(ContextCompat.getDrawable(this.getContext(), resId));
-        return this;
-    }
-
-    public TitleBar setMyCenterIcon(Drawable drawable) {
-        Context context = this.getContext();
-        if (this.mCenterIcon == null) {
-            this.mCenterIcon = new ImageView(context);
-            this.mCenterIcon.setScaleType(ImageView.ScaleType.CENTER);
-            //textView in center
-            this.addMyView(this.mCenterIcon, Gravity.CENTER);
-        } else {
-            if (mCenterIcon.getVisibility() != VISIBLE) {
-                mCenterIcon.setVisibility(VISIBLE);
-            }
-        }
-        if (mCenterTitle != null && mCenterTitle.getVisibility() != GONE) {
-            mCenterTitle.setVisibility(GONE);
-        }
-        //隐藏toolbar自带的标题
-        setTitle("");
-        mCenterIcon.setImageDrawable(drawable);
-        return this;
-    }
-
-    /**
-     * 右侧文字
-     *
-     * @param Rid
-     */
-    public TitleBar setMySettingText(@StringRes int Rid) {
-        setMySettingText(this.getContext().getText(Rid));
-        return this;
-    }
-
-    public TitleBar setMySettingText(CharSequence text) {
-        Context context = this.getContext();
-        if (this.mSettingText == null) {
-            this.mSettingText = new TextView(context);
-            this.mSettingText.setGravity(Gravity.CENTER);
-            this.mSettingText.setSingleLine();
-            this.mSettingText.setEllipsize(TextUtils.TruncateAt.END);
-
-            //textView in center
-//            int padding = 16;
-//            this.mSettingText.setPadding(padding, 0, DisplayUtil.px2dip(30), 0);
-            setMySettingTextAppearance(getContext(), R.style.TextAppearance_TitleBar_Title);
-
-            this.addMyView(this.mSettingText, Gravity.END, 0, 0, SizeUtils.dp2px(15), 0);
-        } else {
-            if (mSettingText.getVisibility() != VISIBLE) {
-                mSettingText.setVisibility(VISIBLE);
-            }
-        }
-        if (mSettingIcon != null && mSettingIcon.getVisibility() != GONE) {
-            mSettingIcon.setVisibility(GONE);
-        }
-
-        mSettingText.setText(text);
-
-        return this;
-    }
-
-    private TitleBar setMySettingTextAppearance(Context context, @StyleRes int resId) {
-        if (this.mSettingText != null) {
-            this.mSettingText.setTextAppearance(context, resId);
+    public TitleBar setLeftTextColor(@ColorInt int color) {
+        if (this.mLeftText != null) {
+            this.mLeftText.setTextColor(color);
         }
         return this;
     }
 
-
-    public TitleBar setMySettingTextColor(@ColorInt int color) {
-        if (mSettingText != null) {
-            mSettingText.setTextColor(color);
+    public TitleBar setLeftTextSize(float size) {
+        if (this.mLeftText != null) {
+            this.mLeftText.setTextSize(size);
         }
         return this;
     }
 
-    public TitleBar setSettingTextOnClickListener(View.OnClickListener listener) {
-        if (mSettingText != null) {
-            mSettingText.setOnClickListener(listener);
+    public TitleBar setLeftTextOnClickListener(View.OnClickListener listener) {
+        if (mLeftText != null) {
+            mLeftText.setOnClickListener(listener);
         }
         return this;
     }
-
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public TitleBar setMnavigationIcon(@DrawableRes int resId) {
-        setMnavigationIcon(ContextCompat.getDrawable(this.getContext(), resId));
+    public TitleBar setLeftIcon(@DrawableRes int resId) {
+        setLeftIcon(ContextCompat.getDrawable(this.getContext(), resId));
         //获取系统判定的最低华东距离
 //        ViewConfiguration.get(this.getContext()).getScaledTouchSlop();
         return this;
@@ -295,27 +141,161 @@ public class TitleBar extends Toolbar {
 
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public TitleBar setMnavigationIcon(Drawable drawable) {
+    public TitleBar setLeftIcon(Drawable drawable) {
         Context context = this.getContext();
-        if (this.mNavigationIcon == null) {
-            this.mNavigationIcon = new ImageButton(context);
-            this.mNavigationIcon.setBackground(null);
-            //保持点击区域
-            int padding = 16;
-            this.mNavigationIcon.setPadding(padding, 0, padding, 0);
-
-            this.mNavigationIcon.setScaleType(ImageView.ScaleType.CENTER);
-            //textView in center
-            this.addMyView(this.mNavigationIcon, Gravity.START);
+        if (this.mLeftIcon == null) {
+            this.mLeftIcon = new ImageButton(context);
+            this.mLeftIcon.setBackground(null);
+            int paddingLeft = SizeUtils.dp2px(15);
+            int paddingTop = SizeUtils.dp2px(8);
+            this.mLeftIcon.setPadding(paddingLeft, paddingTop, 0, paddingTop);
+            this.mLeftIcon.setScaleType(ImageView.ScaleType.CENTER);
+            LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+            params.gravity = Gravity.START;
+            this.addView(this.mLeftIcon, params);
         } else {
-            if (mNavigationIcon.getVisibility() != VISIBLE) {
-                mNavigationIcon.setVisibility(VISIBLE);
+            if (mLeftIcon.getVisibility() != VISIBLE) {
+                mLeftIcon.setVisibility(VISIBLE);
             }
         }
-        if (mNavigationText != null && mNavigationText.getVisibility() != GONE) {
-            mNavigationText.setVisibility(GONE);
+        mLeftIcon.setImageDrawable(drawable);
+        return this;
+    }
+
+    public TitleBar setLeftIconOnClickListener(View.OnClickListener listener) {
+        if (mLeftIcon != null) {
+            mLeftIcon.setOnClickListener(listener);
         }
-        mNavigationIcon.setImageDrawable(drawable);
+        return this;
+    }
+
+    /**
+     * 居中标题
+     *
+     * @param rsId
+     */
+    public TitleBar setCenterText(@StringRes int rsId) {
+        setCenterText(this.getContext().getText(rsId));
+        return this;
+    }
+
+    public TitleBar setCenterText(CharSequence text) {
+        Context context = this.getContext();
+        if (this.mCenterText == null) {
+            this.mCenterText = new TextView(context);
+            this.mCenterText.setGravity(Gravity.CENTER);
+            this.mCenterText.setSingleLine();
+            this.mCenterText.setEllipsize(TextUtils.TruncateAt.END);
+            this.mCenterText.setTextSize(17);
+            this.mCenterText.setTextColor(ContextCompat.getColor(this.getContext(), R.color.white));
+
+            LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
+            params.gravity = Gravity.CENTER;
+            this.addView(this.mCenterText, params);
+        } else {
+            if (this.mCenterText.getVisibility() != VISIBLE) {
+                mCenterText.setVisibility(VISIBLE);
+            }
+        }
+        //隐藏toolbar自带的标题
+        setTitle("");
+        mCenterText.setText(text);
+        return this;
+    }
+
+    public TitleBar setCenterTextAppearance(Context context, @StyleRes int resId) {
+        if (this.mCenterText != null) {
+            this.mCenterText.setTextAppearance(context, resId);
+        }
+        return this;
+    }
+
+    public TitleBar setCenterTextColor(@ColorInt int color) {
+        if (this.mCenterText != null) {
+            this.mCenterText.setTextColor(color);
+        }
+        return this;
+    }
+
+    public TitleBar setCenterTextSize(float size) {
+        if (this.mCenterText != null) {
+            this.mCenterText.setTextSize(size);
+        }
+        return this;
+    }
+
+
+    /**
+     * 右侧文字
+     *
+     * @param Rid
+     */
+    public TitleBar setRightText(@StringRes int Rid) {
+        setRightText(this.getContext().getText(Rid));
+        return this;
+    }
+
+
+    public TitleBar setRightText(CharSequence text) {
+        Context context = this.getContext();
+        if (this.mRightText == null) {
+            this.mRightText = new TextView(context);
+            this.mRightText.setTextSize(16);
+            this.mRightText.setGravity(Gravity.CENTER);
+            this.mRightText.setSingleLine();
+            this.mRightText.setEllipsize(TextUtils.TruncateAt.END);
+            this.mRightText.setTextColor(getResources().getColor(R.color.white));
+            //右侧图标和右侧文字同时存在时,右侧图标的paddingLeft为0
+            if (mRightIcon != null && mRightIcon.getVisibility() != View.GONE) {
+                this.mRightText.setPadding(SizeUtils.dp2px(15), 0,0 , 0);
+            } else {
+                this.mRightText.setPadding(SizeUtils.dp2px(15), 0, SizeUtils.dp2px(15), 0);
+            }
+            LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
+            params.gravity = Gravity.END;
+            this.addView(this.mRightText, params);
+        } else {
+            if (mRightText.getVisibility() != VISIBLE) {
+                mRightText.setVisibility(VISIBLE);
+            }
+        }
+
+        mRightText.setText(text);
+
+        return this;
+    }
+    public TitleBar setRightTextPaddingRight(int paddingRight) {
+        if (this.mRightText != null) {
+            this.mRightText.setPadding(SizeUtils.dp2px(15), 0, SizeUtils.dp2px(paddingRight), 0);
+        }
+        return this;
+    }
+    private TitleBar setRightTextAppearance(Context context, @StyleRes int resId) {
+        if (this.mRightText != null) {
+            this.mRightText.setTextAppearance(context, resId);
+        }
+        return this;
+    }
+
+
+    public TitleBar setRightTextColor(@ColorInt int color) {
+        if (mRightText != null) {
+            mRightText.setTextColor(color);
+        }
+        return this;
+    }
+
+    public TitleBar setRightTextSize(float size) {
+        if (mRightText != null) {
+            mRightText.setTextSize(size);
+        }
+        return this;
+    }
+
+    public TitleBar setRightTextOnClickListener(View.OnClickListener listener) {
+        if (mRightText != null) {
+            mRightText.setOnClickListener(listener);
+        }
         return this;
     }
 
@@ -326,65 +306,42 @@ public class TitleBar extends Toolbar {
      * @param resId
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public TitleBar setMySettingIcon(@DrawableRes int resId) {
-        setMySettingIcon(ContextCompat.getDrawable(this.getContext(), resId));
+    public TitleBar setRightIcon(@DrawableRes int resId) {
+        setRightIcon(ContextCompat.getDrawable(this.getContext(), resId));
         //获取系统判定的最低华东距离
 //        ViewConfiguration.get(this.getContext()).getScaledTouchSlop();
         return this;
     }
 
+
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public TitleBar setMySettingIcon(Drawable drawable) {
+    public TitleBar setRightIcon(Drawable drawable) {
         Context context = this.getContext();
-        if (this.mSettingIcon == null) {
-            this.mSettingIcon = new ImageButton(context);
-            ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(5,5);
-            this.mSettingIcon.setLayoutParams(params);
-            this.mSettingIcon.setBackground(null);
-            //保持点击区域
-            int padding = 16;
-            this.mSettingIcon.setPadding(padding, 0, padding, 0);
-
-
-            this.mSettingIcon.setScaleType(ImageView.ScaleType.FIT_XY);
-            //textView in center
-            addMyView(this.mSettingIcon, Gravity.END, 0, 0, SizeUtils.dp2px(10), 0);
+        if (this.mRightIcon == null) {
+            this.mRightIcon = new ImageButton(context);
+            this.mRightIcon.setBackground(null);
+            int paddingLeft = SizeUtils.dp2px(15);
+            int paddingTop = SizeUtils.dp2px(8);
+            this.mRightIcon.setPadding(0, paddingTop, paddingLeft, paddingTop);
+            this.mRightIcon.setScaleType(ImageView.ScaleType.CENTER);
+            LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+            params.gravity = Gravity.END;
+            this.addView(this.mRightIcon, params);
         } else {
-            if (mSettingIcon.getVisibility() != VISIBLE) {
-                mSettingIcon.setVisibility(VISIBLE);
+            if (mRightIcon.getVisibility() != VISIBLE) {
+                mRightIcon.setVisibility(VISIBLE);
             }
         }
-        if (mSettingText != null && mSettingText.getVisibility() != GONE) {
-            mSettingText.setVisibility(GONE);
-        }
-        mSettingIcon.setImageDrawable(drawable);
+        mRightIcon.setImageDrawable(drawable);
         return this;
     }
 
-    public TitleBar setSettingIconOnClickListener(View.OnClickListener listener) {
-        if (mSettingIcon != null) {
-            mSettingIcon.setOnClickListener(listener);
+    public TitleBar setRightIconOnClickListener(View.OnClickListener listener) {
+        if (mRightIcon != null) {
+            mRightIcon.setOnClickListener(listener);
         }
         return this;
     }
-
-    /**
-     * @param v
-     * @param gravity
-     */
-    private TitleBar addMyView(View v, int gravity) {
-        addMyView(v, gravity, 0, 0, 0, 0);
-        return this;
-    }
-
-    private TitleBar addMyView(View v, int gravity, int left, int top, int right, int bottom) {
-        LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT, gravity);
-        lp.setMargins(left, top, right, bottom);
-        this.addView(v, lp);
-        return this;
-    }
-
 
 }
