@@ -33,43 +33,43 @@ public class GoodsDetailActivity extends SwipeBackActivity {
         return R.layout.goods_detail_activity;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void initUI() {
-        TitleBar titleBar = findViewById(R.id.title_bar);
-        titleBar.setCenterText("发布采购")
-
-                .setLeftIcon(R.drawable.nav_back)
-                .setLeftIconOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Log.i(TAG, "onClick: 左边图标");
-                    }
-                })
-                .setLeftText("取消")
-                .setLeftTextPaddingLeft(4)
-                .setLeftTextOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Log.i(TAG, "onClick: 左边文字");
-                    }
-                })
-                .setRightIcon(R.drawable.nav_back)
-                .setRightIconOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Log.i(TAG, "onClick: 右侧图标");
-                    }
-                })
-                .setRightText("保存")
-                .setRightTextPaddingRight(4)
-                .setRightTextOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Log.i(TAG, "onClick: 右边文字");
-                    }
-                })
-        ;
+        setTitle(R.string.app_name);
+//        TitleBar titleBar = findViewById(R.id.title_bar);
+//        titleBar.setCenterText("发布采购")
+//
+//                .setLeftIcon(R.drawable.nav_back)
+//                .setLeftIconOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Log.i(TAG, "onClick: 左边图标");
+//                    }
+//                })
+//                .setLeftText("取消")
+//                .setLeftTextPaddingLeft(4)
+//                .setLeftTextOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        Log.i(TAG, "onClick: 左边文字");
+//                    }
+//                })
+//                .setRightIcon(R.drawable.nav_back)
+//                .setRightIconOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Log.i(TAG, "onClick: 右侧图标");
+//                    }
+//                })
+//                .setRightText("保存")
+//                .setRightTextPaddingRight(4)
+//                .setRightTextOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Log.i(TAG, "onClick: 右边文字");
+//                    }
+//                })
+//        ;
 
         tv_activitys = getView(R.id.tv_activitys);
         tv_activitys.setOnClickListener(this);

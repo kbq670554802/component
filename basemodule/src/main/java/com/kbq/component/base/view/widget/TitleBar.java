@@ -1,22 +1,17 @@
 package com.kbq.component.base.view.widget;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
-import android.support.annotation.RequiresApi;
 import android.support.annotation.StringRes;
 import android.support.annotation.StyleRes;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,12 +19,14 @@ import android.widget.TextView;
 import com.blankj.utilcode.util.SizeUtils;
 import com.kbq.component.base.R;
 
+/**
+ * Author: 柯葆青
+ * Date: 2018/06/1
+ * Description: 自定义ToolBar
+ */
 public class TitleBar extends Toolbar {
     //中心标题
     private TextView mCenterText;
-//    //中心icon
-//    private ImageView mCenterIcon;
-
     //左侧文字
     private TextView mLeftText;
     //左侧按钮
@@ -131,21 +128,16 @@ public class TitleBar extends Toolbar {
         return this;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public TitleBar setLeftIcon(@DrawableRes int resId) {
         setLeftIcon(ContextCompat.getDrawable(this.getContext(), resId));
-        //获取系统判定的最低华东距离
-//        ViewConfiguration.get(this.getContext()).getScaledTouchSlop();
         return this;
     }
 
-
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public TitleBar setLeftIcon(Drawable drawable) {
         Context context = this.getContext();
         if (this.mLeftIcon == null) {
             this.mLeftIcon = new ImageButton(context);
-            this.mLeftIcon.setBackground(null);
+            this.mLeftIcon.setBackgroundColor(0x00000000);
             int paddingLeft = SizeUtils.dp2px(15);
             int paddingTop = SizeUtils.dp2px(8);
             this.mLeftIcon.setPadding(paddingLeft, paddingTop, 0, paddingTop);
@@ -188,7 +180,6 @@ public class TitleBar extends Toolbar {
             this.mCenterText.setEllipsize(TextUtils.TruncateAt.END);
             this.mCenterText.setTextSize(17);
             this.mCenterText.setTextColor(ContextCompat.getColor(this.getContext(), R.color.white));
-
             LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
             params.gravity = Gravity.CENTER;
             this.addView(this.mCenterText, params);
@@ -305,22 +296,17 @@ public class TitleBar extends Toolbar {
      *
      * @param resId
      */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public TitleBar setRightIcon(@DrawableRes int resId) {
         setRightIcon(ContextCompat.getDrawable(this.getContext(), resId));
-        //获取系统判定的最低华东距离
-//        ViewConfiguration.get(this.getContext()).getScaledTouchSlop();
         return this;
     }
 
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public TitleBar setRightIcon(Drawable drawable) {
         Context context = this.getContext();
         if (this.mRightIcon == null) {
             this.mRightIcon = new ImageButton(context);
-            this.mRightIcon.setBackground(null);
+            this.mRightIcon.setBackgroundColor(0x00000000);
             int paddingLeft = SizeUtils.dp2px(15);
             int paddingTop = SizeUtils.dp2px(8);
             this.mRightIcon.setPadding(0, paddingTop, paddingLeft, paddingTop);
