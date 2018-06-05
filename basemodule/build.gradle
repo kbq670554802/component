@@ -65,7 +65,9 @@ dependencies {
     //ARouter (https://github.com/alibaba/ARouter)
     api "com.alibaba:arouter-api:${libs.arouter_api}"
     annotationProcessor "com.alibaba:arouter-compiler:${libs.arouter_compiler}"
-
+    //工具类集 (https://github.com/Blankj/AndroidUtilCode)
     api "com.blankj:utilcode:${libs.utilcode}"
+    //swipebacklayout (https://github.com/ikew0ng/SwipeBackLayout)
+    api "me.imid.swipebacklayout.lib:library:${libs.swipeback_layout}"
 
 }

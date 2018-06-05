@@ -4,15 +4,13 @@ package com.kbq.component.goods.view.activity;
 import android.app.Activity;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.blankj.utilcode.util.ActivityUtils;
-import com.blankj.utilcode.util.ToastUtils;
-import com.kbq.component.base.view.activity.BaseActivity;
+import com.kbq.component.base.view.activity.SwipeBackActivity;
 import com.kbq.component.base.view.widget.TitleBar;
 import com.kbq.component.goods.R;
 import com.kbq.component.goods.RouterConfig;
@@ -25,7 +23,7 @@ import java.util.List;
  * Description: 商品详情页
  */
 @Route(path = RouterConfig.GOODS_GOODS_DETAIL_ACTIVITY)
-public class GoodsDetailActivity extends BaseActivity {
+public class GoodsDetailActivity extends SwipeBackActivity {
     private static final String TAG = "GoodsDetailActivity";
 
     private TextView tv_activitys;
