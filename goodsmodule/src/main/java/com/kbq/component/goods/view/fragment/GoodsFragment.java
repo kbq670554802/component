@@ -8,6 +8,7 @@ import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.facade.callback.NavigationCallback;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.kbq.component.base.utils.ToastUtil;
 import com.kbq.component.base.view.fragment.BaseFragment;
 import com.kbq.component.goods.R;
 import com.kbq.component.goods.RouterConfig;
@@ -64,6 +65,7 @@ public class GoodsFragment extends BaseFragment {
                 @Override
                 public void onInterrupt(Postcard postcard) {
                     Log.i(TAG, "onInterrupt: ");
+                    ToastUtil.showShort((String) postcard.getTag());
                 }
             });
         }

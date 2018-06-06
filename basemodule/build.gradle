@@ -69,5 +69,7 @@ dependencies {
     api "com.blankj:utilcode:${libs.utilcode}"
     //swipebacklayout (https://github.com/ikew0ng/SwipeBackLayout)
     api "me.imid.swipebacklayout.lib:library:${libs.swipeback_layout}"
+    //Gson (https://github.com/google/gson)
+    implementation "com.google.code.gson:gson:${libs.gson}"
 
 }
