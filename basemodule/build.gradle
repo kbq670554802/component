@@ -71,5 +71,17 @@ dependencies {
     api "me.imid.swipebacklayout.lib:library:${libs.swipeback_layout}"
     //Gson (https://github.com/google/gson)
     implementation "com.google.code.gson:gson:${libs.gson}"
+    //rxJava (https://github.com/ReactiveX/RxJava)
+    api "io.reactivex.rxjava2:rxjava:${libs.rxjava}"
+    //rxandroid (https://github.com/ReactiveX/RxAndroid)
+    api "io.reactivex.rxjava2:rxandroid:${libs.rxandroid}"
+    //okhttp3 (https://github.com/square/okhttp)
+    implementation "com.squareup.okhttp3:okhttp:${libs.okhttp3}"
+    //retrofit2 (https://github.com/square/retrofit)
+    implementation "com.squareup.retrofit2:retrofit:${libs.retrofit}"
+    implementation "com.squareup.retrofit2:converter-gson:${libs.retrofit_converter_gson}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${libs.retrofit_adapter_rxjava2}"
+    //rxpermissions2 (com.tbruyelle.rxpermissions2:rxpermissions)
+    api "com.tbruyelle.rxpermissions2:rxpermissions:${libs.rxpermissions}"
 
 }

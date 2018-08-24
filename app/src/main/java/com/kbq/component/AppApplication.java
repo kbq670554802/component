@@ -1,11 +1,10 @@
 package com.kbq.component;
 
-import android.app.Application;
-
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.Utils;
+import com.kbq.component.base.BaseApplication;
 
-public class AppApplication extends Application {
+public class AppApplication extends BaseApplication {
     public static AppApplication instance;
     @Override
     public void onCreate() {
